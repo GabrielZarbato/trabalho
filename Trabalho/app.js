@@ -3,6 +3,7 @@ const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const fs = require('fs');
 const estaAutenticado = require('./middleware/autenticador.js');
 
 //CONFIGURAÇÕES
@@ -30,6 +31,12 @@ const estaAutenticado = require('./middleware/autenticador.js');
         res.sendFile(path.join(__dirname, 'public', 'login.html'));
     });
 
+    //Chama todos os artigos
+    app.get('/todos', (req, res) => {
+        const itens = JSON.parse(fs.readFileSync(__dirname + '/data/articles.json'));
+        return res.status(200).json(itens);
+    });
+
     //Página do artigo escolhido
     app.get('/artigo/:id', (req, res) => {
         res.sendFile(path.join(__dirname, 'public', 'artigo.html'));
@@ -47,11 +54,6 @@ const estaAutenticado = require('./middleware/autenticador.js');
         else {
             return res.redirect('/login.html');
         }
-    });
-
-    //Página de admin
-    app.get('/admin', estaAutenticado, (req, res) => {
-        res.sendFile(path.join(__dirname, 'public', 'admin.html'));
     });
 
 app.listen(3000, () => {

@@ -83,9 +83,22 @@ form .btn {
   margin: 0 auto;
   padding: 0.9rem 2.5rem;
   text-align: center;
-  background-color: #47AB11;
+  background-color: #2400a8;
   color: #fff;
   border-radius: 4px;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
   font-size: 17px;
+  transition: 0.3s;
+}
+
+form .btn:hover {
+  background-color: #2400a8b4;
+}
+
+body {
+  background-color: rgb(9, 9, 9);
+}
+
+h2 {
+  color: white;
 }
